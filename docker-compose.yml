@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  app-admin:
+    container_name: app-admin
+    build:
+      context: ./admin
+
+  app-home:
+    container_name: app-home
+    build:
+      context: ./home
+
+  orchestrator:
+    container_name: orchestrator
+    ports:
+      - 80:80
+    depends_on:
+      - app-admin
+      - app-home
+    build:
+      context: .
